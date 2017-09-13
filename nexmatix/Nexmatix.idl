@@ -1,0 +1,78 @@
+/*
+ *
+ *
+ * Distributed under the OpenDDS License.
+ * See: http://www.opendds.org/license.html
+ */
+
+module Nexmatix {
+
+  enum PresureFault { NO_FAULT, LOW, HIGH };
+
+  #pragma DCPS_DATA_TYPE "Nexmatix::ValveData"
+  #pragma DCPS_DATA_KEY "Nexmatix::ValveData manifoldId"
+  #pragma DCPS_DATA_KEY "Nexmatix::ValveData stationId"
+
+  struct ValveData
+  {
+    // valve identification, location
+    long manifoldId;
+    long stationId;
+    long valveSerialId;
+    string partNumber;
+
+    // fault detect
+    boolean leakFault;
+    PresureFault pressureFault;
+    boolean valveFault;
+
+    // data
+    unsigned long cycles;
+    long pressure;
+
+    // data currently not used by demo javascript
+    long durationLast12;
+    long durationLast14;
+    long equalizationAveragePressure;
+    long equalizationPressureRate;
+    long residualOfDynamicAnalysis;
+    long suppliedPressure;
+  };
+
+   #pragma DCPS_DATA_TYPE "Nexmatix::ValveStatus" // define topic data type
+   #pragma DCPS_DATA_KEY "Nexmatix::ValveStatus valveSerialNumber" // define topic instance
+
+  enum PressureFaultType { PRESSURE_FAULT_N, PRESSURE_FAULT_H, PRESSURE_FAULT_L };
+
+  enum LeakDetectedType { LEAK_DETECTED_N, LEAK_DETECTED_P, LEAK_DETECTED_C };
+
+  enum InputType { INPUT_N, INPUT_A, INPUT_B };
+
+  struct ValveStatus {
+    long valveSerialNumber; // key
+    long long timeStamp;
+    long stationNumber;
+    long cycleCountLimit;
+    long cycleCount;
+    float pressurePoint;
+    long pressureFault;
+    long detectedLeak;
+    long input;
+  };
+
+  #pragma DCPS_DATA_TYPE "Nexmatix::ValveConfig" // define topic data type
+  #pragma DCPS_DATA_KEY "Nexmatix::ValveConfig valveSerialNumber" // define topic instance
+
+  struct ValveConfig {
+    long valveSerialNumber;    // key
+    long manifoldSerialNumber;
+    long stationNumber;
+    long cycleCountLimit;
+    long long timeStamp;
+    long long fabricationDate;
+    long long shippingDate;
+    string productNumber;
+  };
+  
+};
+

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+export DANCE_ROOT=unused
+export CIAO_ROOT=unused
+export JAVA_PLATFORM=darwin
+export JAVA_HOME=~/.sdkman/candidates/java/8u131
+export BASE_ROOT=~/projects/OpenDDSJava
+export DDS_ROOT=$BASE_ROOT/Release/OpenDDS-3.11
+export ACE_ROOT=$DDS_ROOT/ACE_wrappers
+export TAO_ROOT=$ACE_ROOT/TAO
+export MPC_ROOT=$ACE_ROOT/MPC
+export TEST_ROOT=$BASE_ROOT/dds-valve
+export PATH=${PATH}:$ACE_ROOT/bin:$DDS_ROOT/bin
+export DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH}:$ACE_ROOT/lib:$DDS_ROOT/lib
+export DDS_CLASSPATH=$DDS_ROOT/lib/i2jrt.jar:$DDS_ROOT/lib/OpenDDS_DCPS.jar

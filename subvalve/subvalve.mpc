@@ -1,0 +1,9 @@
+project: dcps_tcp, dcps_udp, dcps_multicast, dcps_test_java {
+
+  after      += valve
+  javacflags += -classpath ../lib/nexmatix.jar
+
+  specific {
+    jarname     = ../lib/subvalve
+  }
+}

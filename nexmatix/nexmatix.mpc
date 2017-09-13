@@ -1,0 +1,31 @@
+project: dcps_test_java {
+
+  idlflags     += -Wb,stub_export_include=nexmatix_export.h \
+                  -Wb,stub_export_macro=Nexmatix_Export
+
+  dcps_ts_flags+= -Wb,export_macro=Nexmatix_Export
+
+  idl2jniflags += -Wb,stub_export_include=nexmatix_export.h \
+                  -Wb,stub_export_macro=Nexmatix_Export
+
+  dynamicflags += NEXMATIX_BUILD_DLL
+
+  specific {
+    jarname     = ../lib/nexmatix
+  }
+
+  // Older versions of Visual Studio will create the intermediate directories
+  // in all-lowercase, so we have to create them first to get the correct case.
+  specific(vc71, vc8) {
+    prebuild   += <%mkdir%> Nexmatix 2<%gt%> <%nul%> <%or%> <%cat%> <%nul%> <%gt%> <%nul%>
+    prebuild   += <%mkdir%> classes<%slash%>Nexmatix 2<%gt%> <%nul%> <%or%> <%cat%> <%nul%> <%gt%> <%nul%>
+  }
+
+  TypeSupport_Files {
+    Nexmatix.idl
+  }
+
+  verbatim(gnuace, bottom, 1) {
+    idl_stubs: _NexmatixTypeSupportTAOPeer.java
+  }
+}
