@@ -1,4 +1,4 @@
-project: dcps_tcp, dcps_udp, dcps_multicast, dcps_test_java {
+project: dcps_tcp, dcps_udp, dcps_multicast, dcps_java {
 
   after      += valve
   javacflags += -classpath ../lib/nexmatix.jar

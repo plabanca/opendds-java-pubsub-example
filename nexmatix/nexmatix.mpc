@@ -1,4 +1,4 @@
-project: dcps_test_java {
+project: dcps_java {
 
   idlflags     += -Wb,stub_export_include=nexmatix_export.h \
                   -Wb,stub_export_macro=Nexmatix_Export
